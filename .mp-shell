@@ -1,0 +1,24 @@
+#!/bin/bash
+
+# Show directory size
+mp-dir-size(){
+   du -hsx * | sort -rh
+}
+
+# Port forwarding
+mp-port-forward(){
+	ssh -M -S $1 -fNT $1
+}
+
+mp-port-forward-check(){
+	ssh -S $1 -O check $1
+}
+
+mp-port-forward-exit(){
+	ssh -S $1 -O exit $1
+}
+
+# Port checking
+mp-port-check(){
+        lsof -nP -i4TCP:$1 | grep LISTEN
+}
